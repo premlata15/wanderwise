@@ -16,11 +16,11 @@ const Hero = () => {
       <div className="absolute -z-10 left-0 top-0 w-full h-full overflow-hidden">
         <img
           className="w-full"
-          src="https://images.unsplash.com/photo-1500754088824-ce0582cfe45f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fGxhcHRvcCUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D"
+          src="https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Hero Background"
         ></img>
       </div>
-      <div className="absolute -z-5 left-0 top-0 w-full h-full bg-black opacity-40"></div>
+      <div className="absolute -z-5 left-0 top-0 w-full h-full bg-black opacity-10"></div>
     </section>
   );
 };
