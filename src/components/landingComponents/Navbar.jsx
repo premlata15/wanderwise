@@ -11,10 +11,10 @@ const Navbar = () => {
       {/* right navbar */}
       <div className="flex items-center gap-10">
         <nav className="flex items-center gap-6 [&>a]:text-lg [&>a]:font-medium [&>a]:hover:text-blue-600">
-          <a href="#">Features</a>
-          <a href="#">About</a>
-          <a href="#">Famous Trip</a>
-          <a href="#">Contact</a>
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+          <a href="#famous-trip">Famous Trip</a>
+          <a href="#contact">Contact</a>
         </nav>
         <CustomButton text="Sign in" />
       </div>

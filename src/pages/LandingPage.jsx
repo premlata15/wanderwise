@@ -10,11 +10,21 @@ const LandingPage = () => {
   return (
     <>
       <Navbar />
-      <Hero />
-      <Features />
-      <Contact />
-      <FamousTrips />
-      <AboutUS />
+      <div id="hero">
+        <Hero />
+      </div>
+      <div id="features">
+        <Features />
+      </div>
+      <div id="contact">
+        <Contact />
+      </div>
+      <div id="famous-trip">
+        <FamousTrips />
+      </div>
+      <div id="about">
+        <AboutUS />
+      </div>
     </>
   );
 };
