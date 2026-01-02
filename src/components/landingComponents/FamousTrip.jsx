@@ -1,4 +1,4 @@
-import FeaturesCard from "./common/FeaturesCard";
+import FamousTripCard from "./common/FamousTripCard";
 
 const trips = [
   {
@@ -36,7 +36,7 @@ const FamousTrips = () => {
 
       <div className="grid grid-cols-4 gap-6">
         {trips.map((trip, index) => (
-          <FeaturesCard
+          <FamousTripCard
             key={index}
             title={trip.title}
             description={trip.description}
