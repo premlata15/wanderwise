@@ -5,6 +5,7 @@ import Features from "../components/landingComponents/Features";
 import Contact from "../components/landingComponents/Contact";
 import FamousTrips from "../components/landingComponents/FamousTrip";
 import AboutUS from "../components/landingComponents/AboutUs";
+import Footer from "../components/landingComponents/Footer";
 
 const LandingPage = () => {
   return (
@@ -15,16 +16,17 @@ const LandingPage = () => {
       </div>
       <div id="features">
         <Features />
-      </div>
-      <div id="contact">
-        <Contact />
+        <div id="about">
+          <AboutUS />
+        </div>
       </div>
       <div id="famous-trip">
         <FamousTrips />
       </div>
-      <div id="about">
-        <AboutUS />
+      <div id="contact">
+        <Contact />
       </div>
+      <Footer />
     </>
   );
 };

@@ -85,19 +85,19 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      content: "support@journey.com",
+      content: "wanderwise@journey.com",
       description: "We'll respond within 24 hours",
     },
     {
       icon: Phone,
       title: "Call Us",
-      content: "+1 (555) 123-4567",
+      content: "+977 9817320748",
       description: "Mon-Fri from 8am to 6pm",
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      content: "123 Journey Street, Travel City",
+      content: "Biratnagar, Traffic Chowk",
       description: "Come say hello at our office",
     },
   ];
@@ -213,7 +213,7 @@ const Contact = () => {
                           ? "border-red-300 bg-red-50"
                           : "border-gray-300"
                       } focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none`}
-                      placeholder="john@example.com"
+                      placeholder="wanderwise@example.com"
                     />
                     {errors.email && (
                       <p className="mt-1 text-sm text-red-600 flex items-center">
@@ -239,7 +239,7 @@ const Contact = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none"
-                      placeholder="+1 (555) 000-0000"
+                      placeholder="9817320748"
                     />
                   </div>
 
