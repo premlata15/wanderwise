@@ -1,5 +1,5 @@
 import React from "react";
-import FeaturesCard from "./common/FeaturesCard";
+import FeaturesCard from "../common/FeaturesCard";
 import { BanknoteArrowDown, History, Map, NotebookPen } from "lucide-react";
 
 const featuresData = [

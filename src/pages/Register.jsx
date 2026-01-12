@@ -22,6 +22,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { registerUser } from "@/api/auth";
+import useAuth from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const formSchema = z
   .object({
@@ -44,6 +47,8 @@ const formSchema = z
   });
 
 export default function SigninPage() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -53,14 +58,21 @@ export default function SigninPage() {
       confirmPassword: "",
     },
   });
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
     const { name, email, password } = data;
     try {
-      const response = registerUser({ name, email, password });
+      const response = await registerUser({ name, email, password });
       console.log(response);
+      if (response.token) {
+        login(response.user, response.token);
+        navigate("/dashboard");
+      } else {
+        toast.error("Registration failed. Please try again.");
+      }
     } catch (error) {
-      console.error("Registration failed:", error);
+      console.log("Registration failed:", error);
+      toast.error("Registration failed. Please try again.");
     }
   };
   return (
@@ -148,7 +160,10 @@ export default function SigninPage() {
                 Submit
               </Button>
               <p className="text-xs text-gray-500 mt-4">
-                Already have an account? <a href="/signin">Signin.</a>
+                Already have an account?{" "}
+                <a href="/signin" className="text-purple-800 underline">
+                  Signin.
+                </a>
               </p>
             </CardFooter>
           </Card>

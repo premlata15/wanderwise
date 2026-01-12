@@ -1,5 +1,6 @@
 import React from "react";
-import CustomButton from "./common/CustomButton";
+import CustomButton from "../common/CustomButton";
+import { Button } from "../ui/button";
 
 function Hero() {
   return (
@@ -14,6 +15,7 @@ function Hero() {
           modi ipsa nesciunt accusamus et?
         </p>
         <CustomButton text="Get Started" />
+        <Button variant="outline">Hello</Button>
       </div>
       {/* background image */}
       <div className="absolute -z-10 left-0 top-0 w-full overflow-hidden">

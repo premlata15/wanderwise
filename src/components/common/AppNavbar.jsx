@@ -1,9 +1,12 @@
 import React from "react";
 import CustomButton from "../common/CustomButton";
+import useAuth from "@/hooks/useAuth";
 
-const Navbar = () => {
+const AppNavbar = () => {
+  const { logout } = useAuth();
+
   return (
-    <header className="flex justify-between items-center px-20 py-5">
+    <header className="flex justify-between items-center px-20 py-5 border-b border-gray-200 shadow-sm">
       {/* left navbar  */}
       <div className="flex items-center gap-4">
         <img
@@ -17,17 +20,17 @@ const Navbar = () => {
       {/* right navbar  */}
       <div className="flex items-center gap-16">
         <nav className="flex items-center gap-8 [&>a]:text-gray-800 font-medium [&>a]:hover:text-purple-600 [&>a]:hover:underline">
-          <a href="#">Features</a>
-          <a href="#">About</a>
-          <a href="#">Famous Trips</a>
-          <a href="#">Contact</a>
+          <a href="/dashboard">Dashboard</a>
+          <a href="/trips">Trips</a>
+          <a href="/itineraries">Itineraries</a>
+          <a href="/baggage">Baggage</a>
         </nav>
-        <a href="/signin">
-          <CustomButton text="Sign In" />
-        </a>
+        <div>
+          <CustomButton text="Log out" onClick={logout} />
+        </div>
       </div>
     </header>
   );
 };
 
-export default Navbar;
+export default AppNavbar;

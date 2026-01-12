@@ -1,5 +1,5 @@
 import React from "react";
-import FamousTripCard from "./common/FamousTripCard";
+import FamousTripCard from "../common/FamousTripCard";
 
 export default function FamousTrip() {
   const famousTrips = [
