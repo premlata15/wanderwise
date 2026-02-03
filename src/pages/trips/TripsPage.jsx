@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { MoreVertical, Plus } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardAction,
@@ -14,7 +14,8 @@ import useApi from "@/hooks/useApi";
 import TripCard from "@/components/trips/TripCard";
 
 const TripsPage = () => {
-  const { data, error, loading } = useApi("/trips");
+  const [dependency, setDependency] = useState(0);
+  const { data, error, loading } = useApi("/trips", {}, [dependency]);
 
   if (loading) return <div>loading</div>;
 
@@ -38,7 +39,13 @@ const TripsPage = () => {
           <div>No trips found. Please add a trip.</div>
         ) : (
           data.map((trip) => {
-            return <TripCard key={trip._id} trip={trip} />;
+            return (
+              <TripCard
+                key={trip._id}
+                trip={trip}
+                setDependency={setDependency}
+              />
+            );
           })
         )}
       </div>

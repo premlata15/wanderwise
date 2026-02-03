@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { email, z } from "zod";
+import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -15,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -25,6 +26,7 @@ import { registerUser } from "@/api/auth";
 import useAuth from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { useEffect } from "react";
 
 const formSchema = z
   .object({
@@ -32,13 +34,13 @@ const formSchema = z
       message: "Name must be at least 2 characters.",
     }),
     email: z.string().min(2, {
-      message: "Username must be at least 2 characters.",
+      message: "Email must be at least 2 characters.",
     }),
     password: z.string().min(8, {
-      message: "Password must be at least 8 characters.",
+      message: "Password must be atleast 8 characters.",
     }),
     confirmPassword: z.string().min(8, {
-      message: "Password must be at least 8 characters.",
+      message: "Password must be atleast 8 characters.",
     }),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -46,9 +48,16 @@ const formSchema = z
     path: ["confirmPassword"],
   });
 
-export default function SigninPage() {
-  const { login } = useAuth();
+export default function Register() {
+  const { login, token } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, [token]);
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -58,6 +67,7 @@ export default function SigninPage() {
       confirmPassword: "",
     },
   });
+
   const onSubmit = async (data) => {
     console.log(data);
     const { name, email, password } = data;
@@ -71,38 +81,47 @@ export default function SigninPage() {
         toast.error("Registration failed. Please try again.");
       }
     } catch (error) {
-      console.log("Registration failed:", error);
+      console.log(error);
       toast.error("Registration failed. Please try again.");
     }
   };
+
   return (
     <section className="h-dvh flex items-center justify-center">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <Card className={"w-110"}>
-            <CardHeader className="flex flex-row justify-between items-center">
+          <Card className="w-100">
+            <CardHeader
+              className={"flex items-center justify-between border-b"}
+            >
               <div>
-                <CardTitle className="text-2xl font bold">Register</CardTitle>
+                <CardTitle className="text-2xl font-bold">Register</CardTitle>
                 <CardDescription>
-                  Enter your credential to register.
+                  Enter your credentials to register.
                 </CardDescription>
               </div>
-              <img className="w-10 h-10" src="/logo.png" alt="Logo" />
+              <img
+                className="w-10 h-10"
+                src="/logo.png"
+                alt="Wanderwise Logo"
+              />
             </CardHeader>
+
             <CardContent className="space-y-4">
               <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>Full Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Musu Jallow" {...field} />
+                      <Input placeholder="Harka Bahadur" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
               <FormField
                 control={form.control}
                 name="email"
@@ -111,7 +130,7 @@ export default function SigninPage() {
                     <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="musu@gmail.com"
+                        placeholder="abc@gmail.com"
                         type={"email"}
                         {...field}
                       />
@@ -120,6 +139,7 @@ export default function SigninPage() {
                   </FormItem>
                 )}
               />
+
               <FormField
                 control={form.control}
                 name="password"
@@ -137,6 +157,7 @@ export default function SigninPage() {
                   </FormItem>
                 )}
               />
+
               <FormField
                 control={form.control}
                 name="confirmPassword"
@@ -155,13 +176,15 @@ export default function SigninPage() {
                 )}
               />
             </CardContent>
+
             <CardFooter className="flex flex-col gap-4">
-              <Button className={"w-full"} type="submit">
+              <Button className="w-full" type="submit">
                 Submit
               </Button>
-              <p className="text-xs text-gray-500 mt-4">
+
+              <p className="text-sm text-gray-500">
                 Already have an account?{" "}
-                <a href="/signin" className="text-purple-800 underline">
+                <a href="/signin" className="text-blue-700 underline">
                   Signin.
                 </a>
               </p>

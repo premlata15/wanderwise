@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardTitle,
@@ -7,8 +7,12 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import TripForm from "@/components/trips/TripForm";
-import { data, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import useApi from "@/hooks/useApi";
+import { Button } from "@/components/ui/button";
+import { Trash2 } from "lucide-react";
+import api from "@/api/axios";
+import { toast } from "sonner";
 
 const EditTripPage = () => {
   const { id } = useParams();
